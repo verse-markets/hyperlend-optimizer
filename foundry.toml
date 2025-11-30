@@ -21,7 +21,14 @@ depth = 64
 [rpc_endpoints]
 mainnet = "https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
 avalanche = "https://rpc.ankr.com/avalanche"
-tenderly = "https://rpc.tenderly.co/fork/${TENDERLY_FORK_ID}"
+tenderly = "https://mainnet.gateway.tenderly.co/5jAnxSxmcVvFtPzEWPk5rc"
+# tenderly = "https://sepolia.gateway.tenderly.co/3ICr3uFynN0R0o8kfTFdeX"
+# tenderly = "https://virtual.mainnet.eu.rpc.tenderly.co/51b1f545-0fb7-48fb-bef9-2ff383512332"
+# tenderly = "https://rpc.tenderly.co/fork/${TENDERLY_FORK_ID}"
+
+# HyperEVM / Hyperlend
+hyperevm_mainnet = "https://hyperliquid-mainnet.g.alchemy.com/v2/${ALCHEMY_HYPEREVM_KEY}"
+hyperevm_testnet = "https://hyperliquid-testnet.g.alchemy.com/v2/${ALCHEMY_HYPEREVM_KEY}"
 
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/crates/config
