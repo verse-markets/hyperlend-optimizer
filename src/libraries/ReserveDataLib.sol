@@ -36,12 +36,18 @@ library ReserveDataLib {
         uint256 reserveFactor = reserve.configuration.getReserveFactor();
         if (reserveFactor == 0) return reserve.accruedToTreasury;
 
-        (
-            uint256 currPrincipalStableDebt,
-            uint256 currTotalStableDebt,
-            uint256 currAvgStableBorrowRate,
-            uint40 stableDebtLastUpdateTimestamp
-        ) = IStableDebtToken(reserve.stableDebtTokenAddress).getSupplyData();
+        uint256 currPrincipalStableDebt;
+        uint256 currTotalStableDebt;
+        uint256 currAvgStableBorrowRate;
+        uint40 stableDebtLastUpdateTimestamp;
+
+        if (reserve.stableDebtTokenAddress != address(0)) {
+            (currPrincipalStableDebt, currTotalStableDebt, currAvgStableBorrowRate, stableDebtLastUpdateTimestamp) =
+                IStableDebtToken(reserve.stableDebtTokenAddress).getSupplyData();
+        } else {
+            // No stable debt token: treat stable debt as zero.
+            stableDebtLastUpdateTimestamp = reserve.lastUpdateTimestamp;
+        }
         uint256 scaledTotalVariableDebt = IVariableDebtToken(reserve.variableDebtTokenAddress).scaledTotalSupply();
 
         uint256 currTotalVariableDebt = scaledTotalVariableDebt.rayMul(indexes.borrow.poolIndex);
