@@ -40,13 +40,13 @@ contract Configured is StdChains {
     }
 
     function _loadConfig() internal virtual {
-        dai = config.getAddress("DAI");
-        usdc = config.getAddress("USDC");
-        usdt = config.getAddress("USDT");
-        aave = config.getAddress("AAVE");
-        link = config.getAddress("LINK");
-        wbtc = config.getAddress("WBTC");
-        weth = config.getAddress("WETH");
+        dai = config.getAddress("USDe");
+        usdc = dai;
+        usdt = dai;
+        aave = config.getAddress("wHYPE");
+        link = aave;
+        wbtc = config.getAddress("UBTC");
+        weth = config.getAddress("UETH");
         wNative = config.getWrappedNative();
         lsdNatives = config.getLsdNatives();
         stNative = lsdNatives[0];
