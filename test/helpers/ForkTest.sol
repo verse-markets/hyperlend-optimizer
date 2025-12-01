@@ -176,31 +176,31 @@ contract ForkTest is BaseTest, Configured {
         if (amount == 0) return;
 
         // Needed because AAVE packs the balance struct.
-        if (underlying == aave) {
-            uint256 initialBalance = ERC20(aave).balanceOf(user);
-            require(amount <= type(uint104).max, "deal: amount exceeds AAVE balance limit");
-            // The slot of the balance struct "_balances" is 0.
-            bytes32 balanceSlot = keccak256(abi.encode(user, uint256(0)));
-            bytes32 initialValue = vm.load(aave, balanceSlot);
-            // The balance is stored in the first 104 bits.
-            bytes32 finalValue = ((initialValue >> 104) << 104) | bytes32(uint256(amount));
-            vm.store(aave, balanceSlot, finalValue);
-            require(ERC20(aave).balanceOf(user) == uint256(amount), "deal: AAVE balance mismatch");
+        //if (underlying == aave) {
+        //    uint256 initialBalance = ERC20(aave).balanceOf(user);
+        //    require(amount <= type(uint104).max, "deal: amount exceeds AAVE balance limit");
+        //    // The slot of the balance struct "_balances" is 0.
+        //    bytes32 balanceSlot = keccak256(abi.encode(user, uint256(0)));
+        //    bytes32 initialValue = vm.load(aave, balanceSlot);
+        //    // The balance is stored in the first 104 bits.
+        //    bytes32 finalValue = ((initialValue >> 104) << 104) | bytes32(uint256(amount));
+        //    vm.store(aave, balanceSlot, finalValue);
+        //    require(ERC20(aave).balanceOf(user) == uint256(amount), "deal: AAVE balance mismatch");
 
-            uint256 totSup = ERC20(aave).totalSupply();
-            if (amount < initialBalance) {
-                totSup -= (initialBalance - amount);
-            } else {
-                totSup += (amount - initialBalance);
-            }
-            // The slot of the balance struct "totalSupply" is 2.
-            bytes32 totalSupplySlot = bytes32(uint256(2));
-            vm.store(aave, totalSupplySlot, bytes32(totSup));
+        //    uint256 totSup = ERC20(aave).totalSupply();
+        //    if (amount < initialBalance) {
+        //        totSup -= (initialBalance - amount);
+        //    } else {
+        //        totSup += (amount - initialBalance);
+        //    }
+        //    // The slot of the balance struct "totalSupply" is 2.
+        //    bytes32 totalSupplySlot = bytes32(uint256(2));
+        //    vm.store(aave, totalSupplySlot, bytes32(totSup));
 
-            return;
-        }
+        //    return;
+        //}
 
-        if (underlying == weth) super.deal(weth, weth.balance + amount); // Refill wrapped Ether.
+        //if (underlying == weth) super.deal(weth, weth.balance + amount); // Refill wrapped Ether.
 
         super.deal(underlying, user, amount);
     }
