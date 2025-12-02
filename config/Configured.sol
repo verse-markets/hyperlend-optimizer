@@ -41,8 +41,8 @@ contract Configured is StdChains {
 
     function _loadConfig() internal virtual {
         dai = config.getAddress("USDe");
-        usdc = dai;
-        usdt = dai;
+        usdc = config.getAddress("USDHL");
+        usdt = config.getAddress("USD\u20AE0");
         aave = config.getAddress("wHYPE");
         link = aave;
         wbtc = config.getAddress("UBTC");

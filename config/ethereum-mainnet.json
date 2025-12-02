@@ -20,5 +20,5 @@
   "kHYPE": "0xfD739d4e423301CE9385c1fb8850539D657C296D",
 
   "wrappedNative": "wHYPE",
-  "lsdNatives": ["kHYPE"]
+  "lsdNatives": ["sUSDe", "kHYPE"]
 }
