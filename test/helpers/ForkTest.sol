@@ -175,6 +175,14 @@ contract ForkTest is BaseTest, Configured {
     function deal(address underlying, address user, uint256 amount) internal override {
         if (amount == 0) return;
 
+        // Avoids touching wstHYPE (the LSD native, stored in `stNative`) via `stdstore`-based deal.
+        // Similar to how AAVE was handled, wstHYPE has non‑standard accounting that can overflow
+        // when Forge's generic `deal` implementation probes storage by writing `type(uint256).max`.
+        // For our tests we don't rely on pre-funded wstHYPE balances, so we simply skip it here.
+        if (underlying == stNative) {
+            return;
+        }
+
         // Needed because AAVE packs the balance struct.
         //if (underlying == aave) {
         //    uint256 initialBalance = ERC20(aave).balanceOf(user);
