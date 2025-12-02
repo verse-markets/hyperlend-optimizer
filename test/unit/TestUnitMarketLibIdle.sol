@@ -89,7 +89,9 @@ contract TestUnitMarketLibIdle is ForkTest {
 
         supplyGap = reserve.supplyGap(poolSupplyIndex, poolBorrowIndex);
         // Adding 2 ensures that the amount is greater than the supply cap after rounding down.
-        amount = bound(amount, supplyGap + 2, type(uint256).max);
+        // Upper bound is capped to avoid overflowing `market.idleSupply + idleSupplyIncrease` in `increaseIdle`.
+        uint256 maxReasonableAmount = type(uint256).max - MAX_AMOUNT * daiTokenUnit;
+        amount = bound(amount, supplyGap + 2, maxReasonableAmount);
 
         _market.indexes.supply.poolIndex = uint128(pool.getReserveNormalizedIncome(dai));
         _market.indexes.borrow.poolIndex = uint128(pool.getReserveNormalizedVariableDebt(dai));
