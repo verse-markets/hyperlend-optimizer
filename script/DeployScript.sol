@@ -35,9 +35,7 @@ contract Deploy is Script, Configured {
 
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
         _deploy();
-        morpho.createMarket(dai, 3_333, 3_333);
-        morpho.createMarket(usdc, 3_333, 3_333);
-        morpho.createMarket(wbtc, 3_333, 3_333);
+        _createMarkets();
         vm.stopBroadcast();
     }
 
@@ -64,5 +62,20 @@ contract Deploy is Script, Configured {
             )
         );
         morpho = Morpho(payable(address(morphoProxy)));
+    }
+
+    function _createMarkets() internal {
+        morpho.createMarket(dai, 3_333, 3_333);
+        morpho.createMarket(usdc, 3_333, 3_333);
+        morpho.createMarket(usdt, 3_333, 3_333);
+
+        morpho.createMarket(aave, 3_333, 3_333);
+
+        morpho.createMarket(wbtc, 3_333, 3_333);
+        morpho.createMarket(weth, 3_333, 3_333);
+
+        morpho.createMarket(lsdNatives[0], 3_333, 3_333);
+        morpho.createMarket(lsdNatives[1], 3_333, 3_333);
+        morpho.createMarket(lsdNatives[2], 3_333, 3_333);
     }
 }
