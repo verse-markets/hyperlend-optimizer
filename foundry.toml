@@ -29,8 +29,8 @@ tenderly = "https://mainnet.gateway.tenderly.co/5jAnxSxmcVvFtPzEWPk5rc"
 # HyperEVM / Hyperlend
 # hyperevm_mainnet = "https://hyperliquid-mainnet.g.alchemy.com/v2/${ALCHEMY_HYPEREVM_KEY}"
 # hyperevm_testnet = "https://hyperliquid-testnet.g.alchemy.com/v2/${ALCHEMY_HYPEREVM_KEY}"
-# hyperevm_mainnet = "https://rpc.hyperliquid.xyz/evm"
+hyperevm_mainnet = "https://rpc.hyperliquid.xyz/evm"
 hyperevm_testnet = "https://rpc.hyperliquid-testnet.xyz/evm"
-hyperevm_mainnet = "https://rpc.hyperlend.finance"
+#hyperevm_mainnet = "https://rpc.hyperlend.finance"
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/crates/config

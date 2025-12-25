@@ -3,7 +3,7 @@
   "rpcAlias": "hyperevm_mainnet",
   "forkBlockNumber": 0,
 
-  "addressesProvider": "0x72c98246a98bFe64022a3190e7710E157497170C",
+  "addressesProvider": "0xA73ff12D177D8F1Ec938c3ba0e87D33524dD5594",
 
   "morphoDao": "0x0000000000000000000000000000000000000000",
   "morphoEth": "0x0000000000000000000000000000000000000000",

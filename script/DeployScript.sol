@@ -65,17 +65,10 @@ contract Deploy is Script, Configured {
     }
 
     function _createMarkets() internal {
-        morpho.createMarket(dai, 3_333, 3_333);
-        morpho.createMarket(usdc, 3_333, 3_333);
-        morpho.createMarket(usdt, 3_333, 3_333);
-
-        morpho.createMarket(aave, 3_333, 3_333);
-
-        morpho.createMarket(wbtc, 3_333, 3_333);
-        morpho.createMarket(weth, 3_333, 3_333);
-
-        morpho.createMarket(lsdNatives[0], 3_333, 3_333);
-        morpho.createMarket(lsdNatives[1], 3_333, 3_333);
-        morpho.createMarket(lsdNatives[2], 3_333, 3_333);
+        morpho.createMarket(dai, 0, 5_000);
+        // morpho.createMarket(usdc, 0, 5_000); // USDC skipped: AAVE reserve has future lastUpdateTimestamp causing underflow
+        morpho.createMarket(aave, 0, 5_000);
+        morpho.createMarket(wbtc, 0, 5_000);
+        morpho.createMarket(weth, 0, 5_000);
     }
 }
